@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Cadastro - Minha Rede</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Minha Rede</h1>
+        </header>
+
+        <!-- ===== LOGIN ===== -->
+        <div class="login-container" id="loginSection">
+            <h2>Login</h2>
+            <input type="text" id="login-username" placeholder="Usuário" required>
+            <input type="password" id="login-password" placeholder="Senha" required>
+            <button type="button" id="login-btn">Entrar</button>
+            <p>Não tem conta? <a href="#" id="show-register">Cadastre-se</a></p>
+            <p style="font-size:0.9em; margin-top:10px;">
+                <a href="#" id="show-support">Esqueceu a senha?</a>
+            </p>
+        </div>
+
+        <!-- ===== CADASTRO (OCULTO INICIALMENTE) ===== -->
+        <div class="register-container" id="registerSection" style="display: none;">
+            <h2>Cadastro</h2>
+            <input type="text" id="regUsername" placeholder="Usuário" required>
+            <input type="email" id="regEmail" placeholder="Email (opcional)">
+            <input type="password" id="regPassword" placeholder="Senha" required>
+
+            <?php
+            session_start();
+            if (isset($_SESSION['user_id']) && ($_SESSION['privilege_level'] ?? '') === 'admin'): ?>
+                
+            <?php endif; ?>
+
+            <button type="button" id="register-btn">Cadastrar</button>
+            <p>Já tem conta? <a href="#" id="show-login">Voltar ao Login</a></p>
+            <p id="regError" style="color:red; margin-top:10px;"></p>
+        </div>
+
+        <!-- ===== SUPORTE (OCULTO) ===== -->
+        <div id="supportSection" style="display:none; text-align:center; margin-top:20px;">
+            <p>Esqueceu sua senha?</p>
+            <p>Entre em contato com o suporte:</p>
+            <p>
+                <strong>WhatsApp:</strong> 
+                <a href="https://wa.me/5562994994652" target="_blank" style="color:#25D366; font-weight:bold;">
+                    (62) 99499-4652
+                </a>
+            </p>
+            <button id="back-to-login" style="margin-top:10px;">Voltar</button>
+        </div>
+    </div>
+
+    <!-- REFERÊNCIA AO JS -->
+    <script src="script.js"></script>
+</body>
+</html>
